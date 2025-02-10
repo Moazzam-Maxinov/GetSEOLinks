@@ -1,0 +1,37 @@
+# Laravel-specific files
+.env
+.env.*
+/vendor
+/storage/*
+/public/storage
+/bootstrap/cache/*
+.phpunit.result.cache
+.phpunit.cache
+
+# Exceptions for storage (necessary directories for the framework)
+!/storage/app/public
+!/storage/framework
+!/storage/framework/cache
+!/storage/framework/sessions
+!/storage/framework/views
+!/storage/logs
+
+# Node-related
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Build artifacts
+/public/build
+/public/hot
+
+# IDE and editor files
+/.idea
+/.vscode
+/.fleet
+# Homestead files
+Homestead.json
+Homestead.yaml
+
+# Authentication config (if any)
+/auth.json
