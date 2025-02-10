@@ -71,20 +71,20 @@
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="#backlink-price"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">Link Insertions</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="#backlink-price"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">Guest Posts</a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="#"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">Packages</a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="#"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"

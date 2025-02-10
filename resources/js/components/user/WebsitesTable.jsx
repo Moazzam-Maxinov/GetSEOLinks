@@ -259,7 +259,7 @@ const WebsitesTable = ({ initialCategories }) => {
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSearch}>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between gap-4">
                         {/* Categories Filter */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium">
@@ -269,7 +269,7 @@ const WebsitesTable = ({ initialCategories }) => {
                                 value={selectedCategory}
                                 onValueChange={setSelectedCategory}
                             >
-                                <SelectTrigger className="w-80">
+                                <SelectTrigger className="w-96">
                                     <SelectValue placeholder="Select a category" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -376,17 +376,14 @@ const WebsitesTable = ({ initialCategories }) => {
                                 />
                             </div>
                         </div>
-
-                        <Button
-                            type="submit"
-                            variant="outline"
-                            className="ml-auto mt-7"
-                        >
+                    </div>
+                    <div className="flex items-end gap-x-4">
+                        <Button type="submit" className="ml-auto mt-7">
                             Search
                         </Button>
                         <Button
                             type="button"
-                            variant="outline"
+                            variant="destructive"
                             className="mt-7"
                             onClick={handleReset}
                         >

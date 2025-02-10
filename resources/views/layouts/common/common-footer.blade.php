@@ -2,49 +2,70 @@
     <div class="container mx-auto px-6 md:px-10 flex flex-col md:flex-row gap-8 md:gap-4">
         <div class="w-full md:w-[75%] flex flex-col md:flex-row gap-8">
             {{-- {/* Logo & Contact Information */} --}}
-            <div class="w-full md:w-[40%] space-y-4">
+            <div class="w-full md:w-[40%] space-y-6">
                 <a href="/" class="flex items-center space-x-1">
                     <x-lucide-link class="w-7 h-7 text-primary" />
                     <h6 class="text-3xl font-semibold whitespace-nowrap text-primary-dark dark:text-white">
                         GetSEOLinks
                     </h6>
                 </a>
-                <p class="text-lg text-primary-neutral">
-                    M.A. Jauhar Road, Okhla, New Delhi, India
-                </p>
-                <ul class="space-y-2 text-sm">
-                    <li class="flex items-center text-base text-primary-neutral">
-                        <x-lucide-phone
-                            class="w-5 h-5 mr-2 text-primary"
-                        />
-                        <a
-                            href="tel:+1-917-675-3345"
-                            class="text-primary-neutral hover:text-primary"
-                        >
-                            +1-917-675-3345
-                        </a>
-                    </li>
-                    <li class="flex items-center text-base text-primary-neutral">
-                        <x-lucide-phone class="w-5 h-5 mr-2 text-primary" />
-                        <a
-                            href="tel:+91-9891-4310-27"
-                            class="text-primary-neutral hover:text-primary"
-                        >
-                            +91-9891-4310-27
-                        </a>
-                    </li>
-                    <li class="flex items-center text-base text-primary-neutral">
-                        <x-lucide-mail
-                            class="w-5 h-5 mr-2 text-primary"
-                        />
-                        <a
-                            href="mailto:contact@getseolinks.com"
-                            class="text-primary-neutral hover:text-primary"
-                        >
-                            contact@getseolinks.com
-                        </a>
-                    </li>
-                </ul>
+
+                {{-- US Contact Info --}}
+                <div>
+                    <h4 class="text-lg font-semibold text-primary-dark mb-4">
+                        US Contact
+                    </h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start text-base text-primary-neutral">
+                            <x-lucide-map-pinned class="w-5 h-5 mr-2 text-primary flex-shrink-0" />
+                            40435 Bay Harbor Ln, Canton, MI, 48188, United States
+                        </li>
+                        <li class="flex items-center text-base text-primary-neutral">
+                            <x-lucide-phone
+                                class="w-5 h-5 mr-2 text-primary"
+                            />
+                            <a
+                                href="tel:+1-917-675-3345"
+                                class="text-primary-neutral hover:text-primary"
+                            >
+                                +1-917-675-3345
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- India Contact Info --}}
+                <div>
+                    <h4 class="text-lg font-semibold text-primary-dark mb-4">
+                        India Contact
+                    </h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start text-base text-primary-neutral">
+                            <x-lucide-map-pinned class="w-5 h-5 mr-2 text-primary flex-shrink-0" />
+                            M.A. Jauhar Road, Okhla, New Delhi, India
+                        </li>
+                        <li class="flex items-center text-base text-primary-neutral">
+                            <x-lucide-phone class="w-5 h-5 mr-2 text-primary" />
+                            <a
+                                href="tel:+91-9891-4310-27"
+                                class="text-primary-neutral hover:text-primary"
+                            >
+                                +91-9891-4310-27
+                            </a>
+                        </li>
+                        <li class="flex items-center text-base text-primary-neutral">
+                            <x-lucide-mail
+                                class="w-5 h-5 mr-2 text-primary"
+                            />
+                            <a
+                                href="mailto:contact@getseolinks.com"
+                                class="text-primary-neutral hover:text-primary"
+                            >
+                                contact@getseolinks.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             {{-- {/* Company Links */} --}}
@@ -53,14 +74,14 @@
                     Company
                 </h4>
                 <ul class="space-y-2 text-base">
-                    <li>
+                    {{-- <li>
                         <a
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Blog
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a
                             href="#"
@@ -88,7 +109,7 @@
                 <ul class="space-y-2 text-base">
                     <li>
                         <a
-                            href="#"
+                            href="#backlink-price"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Link Insertions
@@ -96,20 +117,20 @@
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="#backlink-price"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Guest Posts
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Link Packages
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
 
@@ -164,11 +185,11 @@
         <p>
             Copyright © <?php echo date("Y"); ?> GetSEOLinks. All
             Rights Reserved.
-            <a href="#" class="text-primary hover:underline">
+            <a href="/privacy-policy" class="text-primary hover:underline">
                 Privacy Policy
             </a>
             |
-            <a href="#" class="text-primary hover:underline">
+            <a href="/terms-and-condition" class="text-primary hover:underline">
                 Terms & Conditions
             </a>
         </p>

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\VendorServiceController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StaticPagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/counter', [CounterController::class, 'index']);
+Route::get('/privacy-policy', [StaticPagesController::class, 'privacyPolicy']);
+
+Route::get('/terms-and-condition', [StaticPagesController::class, 'termsAndCondition']);
 
 // Routes for Admin
 // All admin routes are prefixed with /admin and use the AdminController.

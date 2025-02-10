@@ -3,6 +3,7 @@
 * {
     font-family: "Arial";
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 h1,

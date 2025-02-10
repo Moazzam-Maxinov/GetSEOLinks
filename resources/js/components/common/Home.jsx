@@ -221,7 +221,10 @@ const Home = () => {
             </section>
 
             {/* Price Section */}
-            <section className="bg-primary-BG3 py-12 md:py-20 space-y-16 md:space-y-20">
+            <section
+                id="backlink-price"
+                className="bg-primary-BG3 py-12 md:py-20 space-y-16 md:space-y-20"
+            >
                 <div className="container mx-auto px-6 lg:px-10">
                     {/* Title */}
                     <div className="text-center">

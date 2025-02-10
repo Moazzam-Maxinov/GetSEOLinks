@@ -18,6 +18,8 @@ export default defineConfig({
                 "resources/js/components/user/PublisherNewOrders.jsx",
                 "resources/js/components/user/PublisherAllOrders.jsx",
                 "resources/js/components/common/Home.jsx",
+                "resources/js/components/common/GSLPolicy.jsx",
+                "resources/js/components/common/TermsConditions.jsx",
                 "resources/js/components/user/WebsitesTable.jsx",
                 "resources/js/components/user/VendorAllOrders.jsx",
                 "resources/js/components/admin/AdminDashboard.jsx",
