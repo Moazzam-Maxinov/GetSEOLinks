@@ -60,7 +60,7 @@ const WebsitesTable = ({ initialCategories }) => {
     const columns = [
         {
             accessorKey: "name",
-            header: "Website",
+            header: "Website Details",
             cell: ({ row }) => {
                 const website = row.original;
                 return (
@@ -85,7 +85,7 @@ const WebsitesTable = ({ initialCategories }) => {
         },
         {
             accessorKey: "categories",
-            header: "Categories",
+            header: "Website Categories",
             cell: ({ row }) => (
                 <div className="flex flex-wrap gap-1">
                     {row.original.categories?.map((cat) => (
@@ -102,20 +102,20 @@ const WebsitesTable = ({ initialCategories }) => {
         },
         {
             accessorKey: "monthly_traffic",
-            header: "Traffic",
+            header: "Monthly Traffic (Ahrefs)",
             cell: ({ getValue }) => getValue()?.toLocaleString(),
         },
         {
             accessorKey: "domain_authority",
-            header: "DA",
+            header: "DA (MOZ)",
         },
         {
             accessorKey: "domain_rating",
-            header: "DR",
+            header: "DR (Ahrefs)",
         },
         {
             accessorKey: "price",
-            header: "Price",
+            header: "Price ($)",
             cell: ({ getValue }) => (
                 <div className="text-emerald-600 font-bold">
                     ${getValue()?.toLocaleString()}
@@ -263,7 +263,7 @@ const WebsitesTable = ({ initialCategories }) => {
                         {/* Categories Filter */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium">
-                                Categories
+                                Website Categories
                             </label>
                             <Select
                                 value={selectedCategory}
@@ -288,7 +288,7 @@ const WebsitesTable = ({ initialCategories }) => {
                         {/* Traffic Filter */}
                         <div className="space-y-2 pl-4">
                             <label className="text-sm font-medium">
-                                Traffic
+                                Monthly Traffic (Ahrefs)
                             </label>
                             <div className="flex gap-2">
                                 <Input
@@ -310,7 +310,9 @@ const WebsitesTable = ({ initialCategories }) => {
 
                         {/* DA Filter */}
                         <div className="space-y-2 pl-4">
-                            <label className="text-sm font-medium">DA</label>
+                            <label className="text-sm font-medium">
+                                DA (MOZ)
+                            </label>
                             <div className="flex gap-2">
                                 <Input
                                     type="number"
@@ -331,7 +333,9 @@ const WebsitesTable = ({ initialCategories }) => {
 
                         {/* DR Filter */}
                         <div className="space-y-2 pl-4">
-                            <label className="text-sm font-medium">DR</label>
+                            <label className="text-sm font-medium">
+                                DR (Ahrefs)
+                            </label>
                             <div className="flex gap-2">
                                 <Input
                                     type="number"
