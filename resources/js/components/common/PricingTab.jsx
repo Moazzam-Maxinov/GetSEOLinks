@@ -79,9 +79,12 @@ const PricingTab = () => {
                                 </div>
                             </CardContent>
                             <CardFooter className="flex justify-center p-0 mt-6">
-                                <Button className="px-6 py-8 bg-primary-light hover:bg-primary text-primary-dark/90 text-xl font-semibold shadow-md rounded-xl w-full">
+                                <a
+                                    href="/register"
+                                    className="inline-flex items-center text-center px-6 py-8 bg-primary-light hover:bg-primary text-primary-dark/90 text-xl font-semibold shadow-md rounded-xl w-full"
+                                >
                                     Get inside
-                                </Button>
+                                </a>
                             </CardFooter>
                         </Card>
                     </TabsContent>

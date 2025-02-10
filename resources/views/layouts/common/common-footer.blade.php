@@ -66,14 +66,6 @@
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
-                            Case Studies
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="text-primary-neutral hover:text-primary"
-                        >
                             About Us
                         </a>
                     </li>
@@ -129,7 +121,7 @@
                 <ul class="space-y-2 text-base">
                     <li>
                         <a
-                            href="#"
+                            href="/login"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Login
@@ -137,7 +129,7 @@
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="/register"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Register

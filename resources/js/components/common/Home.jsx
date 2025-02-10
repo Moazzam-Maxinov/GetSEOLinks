@@ -149,9 +149,12 @@ const Home = () => {
                             goals. With us, trust isn’t optional – it’s
                             guaranteed.
                         </p>
-                        <button className="bg-primary hover:bg-primary-dark text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2">
-                            Learn More <MoveRight />
-                        </button>
+                        <a
+                            href="/register"
+                            className="bg-primary hover:bg-primary-dark text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
+                        >
+                            Get Started <MoveRight />
+                        </a>
                     </div>
 
                     {/* Right Side Features */}
@@ -253,9 +256,12 @@ const Home = () => {
                             grow your business with services designed to
                             strengthen your online presence.
                         </p>
-                        <button className="bg-primary hover:bg-primary-dark text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2">
+                        <a
+                            href="/register"
+                            className="bg-primary hover:bg-primary-dark text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
+                        >
                             Start Building DA40+ Links Now
-                        </button>
+                        </a>
                     </div>
 
                     {/* Right Side Features */}
@@ -467,8 +473,8 @@ const Home = () => {
                                     When you invest in our backlinks, you can
                                     expect a significant improvement in your
                                     search engine ranking. Links from
-                                    LinksManagement are 10 times more powerful
-                                    than regular links because:
+                                    GetSEOLinks are 10 times more powerful than
+                                    regular links because:
                                     <ul>
                                         <li>
                                             Every one of our links is surrounded

@@ -9,7 +9,6 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/js/app.js",
-                "resources/js/components/counter.jsx",
                 "resources/js/components/admin/websites/index.jsx",
                 "resources/js/components/admin/websites/WebsiteDetail.jsx",
                 "resources/js/components/user/DashboardApp.jsx",
@@ -19,8 +18,8 @@ export default defineConfig({
                 "resources/js/components/user/PublisherNewOrders.jsx",
                 "resources/js/components/user/PublisherAllOrders.jsx",
                 "resources/js/components/common/Home.jsx",
-                'resources/js/components/user/WebsitesTable.jsx',
-                'resources/js/components/user/VendorAllOrders.jsx',
+                "resources/js/components/user/WebsitesTable.jsx",
+                "resources/js/components/user/VendorAllOrders.jsx",
                 "resources/js/components/admin/AdminDashboard.jsx",
                 "resources/js/components/admin/AllOrders.jsx",
                 "resources/js/components/admin/NewOrders.jsx",
