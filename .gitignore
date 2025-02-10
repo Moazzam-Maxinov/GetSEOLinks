@@ -9,12 +9,12 @@
 .phpunit.cache
 
 # Exceptions for storage (necessary directories for the framework)
-!/storage/app/public
-!/storage/framework
-!/storage/framework/cache
-!/storage/framework/sessions
-!/storage/framework/views
-!/storage/logs
+/storage/app/public
+/storage/framework
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/logs
 
 # Node-related
 /node_modules
