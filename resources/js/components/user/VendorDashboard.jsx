@@ -45,7 +45,7 @@ function VendorDashboard() {
     const columns = [
         {
             accessorKey: "name",
-            header: "Website",
+            header: "Website Details",
             cell: ({ row }) => {
                 const website = row.original;
                 return (
@@ -70,7 +70,7 @@ function VendorDashboard() {
         },
         {
             accessorKey: "categories",
-            header: "Categories",
+            header: "Website Categories",
             cell: ({ row }) => (
                 <div className="flex flex-wrap gap-1">
                     {row.original.categories?.map((cat) => (
@@ -87,20 +87,20 @@ function VendorDashboard() {
         },
         {
             accessorKey: "monthly_traffic",
-            header: "Traffic",
+            header: "Monthly Traffic (Ahrefs)",
             cell: ({ getValue }) => getValue()?.toLocaleString(),
         },
         {
             accessorKey: "domain_authority",
-            header: "DA",
+            header: "DA (MOZ)",
         },
         {
             accessorKey: "domain_rating",
-            header: "DR",
+            header: "DR (Ahrefs)",
         },
         {
             accessorKey: "price",
-            header: "Price",
+            header: "Price ($)",
             cell: ({ getValue }) => (
                 <div className="text-emerald-600 font-bold">
                     ${getValue()?.toLocaleString()}
