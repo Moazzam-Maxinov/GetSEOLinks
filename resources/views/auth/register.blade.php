@@ -50,30 +50,6 @@
         </div>
     </form>
 
-    <!-- Replace the reCAPTCHA script with this updated version -->
-    {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
-    <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            grecaptcha.ready(function() {
-                grecaptcha.execute('{{ env('RECAPTCHA_SITE_KEY') }}', {
-                    action: 'register'
-                }).then(function(token) {
-                    // Add the token to your form
-                    let tokenInput = document.querySelector('input[name="g-recaptcha-response"]');
-                    if (!tokenInput) {
-                        tokenInput = document.createElement('input');
-                        tokenInput.type = 'hidden';
-                        tokenInput.name = 'g-recaptcha-response';
-                        document.querySelector('form').appendChild(tokenInput);
-                    }
-                    tokenInput.value = token;
-                    document.querySelector('form').submit();
-                });
-            });
-        });
-    </script> --}}
-
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
     <script>
         document.getElementById('register-form').addEventListener('submit', function(e) {
