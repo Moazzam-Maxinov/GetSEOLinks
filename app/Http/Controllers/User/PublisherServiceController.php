@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\PublisherOrder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Category;
+use App\Models\Website;
 
 class PublisherServiceController extends Controller
 {
@@ -45,7 +47,72 @@ class PublisherServiceController extends Controller
         return view('user.manage-order', compact('order'));
     }
 
+    public function addWebsiteForm()
+    {
+        // Fetch categories to populate the categories dropdown
+        $categories = Category::where('status', 1)->get(); // Fetch only active categories
+        // dd($categories);
+        return view('user.add-website', compact('categories'));
+    }
 
+    /**
+     * Handle form submission to add a new website.
+     */
+    public function addWebsite(Request $request)
+    {
+        // Validate the form data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'url' => 'required|url|unique:websites,url',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+            'monthly_traffic' => 'nullable|integer|min:0',
+            'domain_rating' => 'nullable|integer|min:0|max:100',
+            'domain_authority' => 'nullable|integer|min:0|max:100',
+            'spam_score' => 'nullable|numeric|min:0|max:100',
+            'turnaround_time' => 'nullable|string|max:255',
+            'price' => 'nullable|numeric|min:0',
+            'max_dofollow_links' => 'nullable|integer|min:0',
+            'content_guidelines' => 'nullable|string',
+            'minimum_word_count' => 'nullable|integer|min:0',
+            'allowed_link_types' => 'nullable|array',
+            'allowed_link_types.*' => 'in:do-follow,no-follow',
+        ]);
+
+        // Generate masked URL (first 3 characters + *)
+        $domain = parse_url($validated['url'], PHP_URL_HOST); // Extract domain name (e.g., "example.com")
+        $domainWithoutWww = preg_replace('/^www\./', '', $domain); // Remove "www" prefix if present
+        $maskedUrl = substr($domainWithoutWww, 0, 3) . str_repeat('*', strlen($domainWithoutWww) - 3);
+
+        // Store the website in the database
+        $website = Website::create([
+            'user_id' => Auth::id(),
+            'name' => $validated['name'],
+            'url' => $validated['url'],
+            'masked_url' => $maskedUrl,
+            'monthly_traffic' => $validated['monthly_traffic'],
+            'domain_rating' => $validated['domain_rating'],
+            'domain_authority' => $validated['domain_authority'],
+            'spam_score' => $validated['spam_score'],
+            'turnaround_time' => $validated['turnaround_time'],
+            'price' => $validated['price'],
+            'language' => 'en', //Hardcode english language
+            'quality_score' => 1, // Hardcoded to 1
+            'max_dofollow_links' => $validated['max_dofollow_links'],
+            'content_guidelines' => $validated['content_guidelines'],
+            'minimum_word_count' => $validated['minimum_word_count'],
+            'allowed_link_types' => $validated['allowed_link_types'] ?? [],
+            'payment_methods' => ['paypal'], // Hardcoded to ['paypal']
+            'status' => 1, // Hardcoded to 1
+            'is_pending_approval' => 0, // For now assume that approval not needed. Will add later
+        ]);
+
+        // Attach categories to the website (update the pivot table)
+        $website->categories()->sync($validated['categories']);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Website added successfully!');
+    }
 
     //API endpoints
     public function getNewPublisherOrders()
