@@ -363,7 +363,7 @@ const Home = () => {
             </section>
 
             {/* FAQs Section */}
-            <section className="bg-BG1 py-12 md:py-20 space-y-16 md:space-y-20">
+            <section className="bg-primary-BG1 py-12 md:py-20 space-y-16 md:space-y-20">
                 <div className="container mx-auto px-6 lg:px-10">
                     {/* Title */}
                     <div className="text-center">

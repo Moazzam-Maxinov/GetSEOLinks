@@ -31,6 +31,8 @@ Route::get('/privacy-policy', [StaticPagesController::class, 'privacyPolicy']);
 
 Route::get('/terms-and-condition', [StaticPagesController::class, 'termsAndCondition']);
 
+Route::get('/guest-posts', [StaticPagesController::class, 'guestPosts'])->name('guest-posts');
+
 // Routes for Admin
 // All admin routes are prefixed with /admin and use the AdminController.
 // The name('admin.') prefix allows naming routes like admin.dashboard.

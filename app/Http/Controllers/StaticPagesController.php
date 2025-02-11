@@ -16,4 +16,9 @@ class StaticPagesController extends Controller
     {
         return view('common.terms-conditions'); // This will render the 'home' view
     }
+
+    public function guestPosts()
+    {
+        return view('common.guest-posts'); // This will render the 'home' view
+    }
 }
