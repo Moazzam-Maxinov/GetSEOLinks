@@ -91,6 +91,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
     Route::put('/change-password', [UserController::class, 'changePassword'])->name('user.update-password');
     Route::get('/contact', [VendorServiceController::class, 'contact'])->name('user.contact');
 
+    // Route::get('/publisher/add-website', [PublisherServiceController::class, 'addWebsiteForm'])->name('publisher-add-website-form');
+    // Route::post('/publisher/add-website', [PublisherServiceController::class, 'addWebsite'])->name('publisher-add-website-post');
+
     Route::get('/api/dashboard-data', [UserController::class, 'fetchDashboardData'])->name('user.fetchDashboardData');
     Route::post('/api/switch-role', [UserController::class, 'switchRole'])->name('user.switchRole');
     Route::get('/api/publisher-data', [UserController::class, 'getPublisherDashbordData'])->name('user.getPublisherDashbordData');
