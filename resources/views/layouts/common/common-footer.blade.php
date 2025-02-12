@@ -117,7 +117,7 @@
                     </li>
                     <li>
                         <a
-                            href="#backlink-price"
+                            href="/guest-posts"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Guest Posts
