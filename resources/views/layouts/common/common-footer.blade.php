@@ -69,19 +69,19 @@
             </div>
 
             {{-- {/* Company Links */} --}}
-            <div class="w-full md:w-[20%]">
-                <h4 class="text-lg font-semibold text-primary mb-4">
+            <div class="hidden md:block w-full md:w-[20%]">
+                {{-- <h4 class="text-lg font-semibold text-primary mb-4">
                     Company
                 </h4>
                 <ul class="space-y-2 text-base">
-                    {{-- <li>
+                    <li>
                         <a
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Blog
                         </a>
-                    </li> --}}
+                    </li>
                     <li>
                         <a
                             href="#"
@@ -98,7 +98,7 @@
                             Contact Us
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
 
             {{-- {/* Services & Industries */} --}}
@@ -109,10 +109,10 @@
                 <ul class="space-y-2 text-base">
                     <li>
                         <a
-                            href="#backlink-price"
+                            href="/curated-links"
                             class="text-primary-neutral hover:text-primary"
                         >
-                            Link Insertions
+                        Curated Links
                         </a>
                     </li>
                     <li>
@@ -160,6 +160,7 @@
             </div>
         </div>
 
+        {{-- Speak To Our Expert --}}
         <div class="w-full md:w-[25%]">
             {{-- {/* Contact CTA */} --}}
             <div>
@@ -171,7 +172,7 @@
                     could transform your SEO performance!
                 </p>
                 <a
-                    href="#"
+                    href="tel:+91-9891-4310-27"
                     class="bg-primary hover:bg-primary-dark text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
                 >
                     <x-lucide-phone class="w-4 h-4"/> Call Us Now
@@ -193,7 +194,7 @@
                 Terms & Conditions
             </a>
         </p>
-        <div class="flex justify-center space-x-3">
+        {{-- <div class="flex justify-center space-x-3">
             <a
                 href="#"
                 class="text-primary hover:text-primary-dark"
@@ -224,6 +225,6 @@
             >
                 <x-lucide-facebook class="w-5 h-5" />
             </a>
-        </div>
+        </div> --}}
     </div>
 </footer>

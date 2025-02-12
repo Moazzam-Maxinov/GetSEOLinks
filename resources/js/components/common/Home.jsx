@@ -78,7 +78,7 @@ const Home = () => {
                     {/* Right Side Features */}
                     <div className="w-full md:w-[60%] flex items-center">
                         <img
-                            src="./images/hero-image.svg"
+                            src="./images/hero-image.webp"
                             alt=""
                             className=""
                         />

@@ -21,6 +21,7 @@ export default defineConfig({
                 "resources/js/components/common/GSLPolicy.jsx",
                 "resources/js/components/common/TermsConditions.jsx",
                 "resources/js/components/common/GuestPosts.jsx",
+                "resources/js/components/common/CuratedLinks.jsx",
                 "resources/js/components/user/WebsitesTable.jsx",
                 "resources/js/components/user/VendorAllOrders.jsx",
                 "resources/js/components/admin/AdminDashboard.jsx",

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ asset('images/logo1.ico') }}" type="image/x-icon">
+
     <title>@yield('title', 'Write for us - Buy SEO Backlinks - GetSEOLinks')</title>
     <meta name="description" content="@yield('meta_description', 'Write for us and buy high-quality SEO backlinks at Get SEO Links. We offer guest posts, link insertions, and SEO content writing on trusted niche sites.')">
     {{-- <meta name="keywords" content="@yield('meta_keywords', 'admin, dashboard, link market')">

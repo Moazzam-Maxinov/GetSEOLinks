@@ -71,9 +71,9 @@
                         aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#backlink-price"
+                    <a href="/curated-links"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
-                        aria-current="page">Link Insertions</a>
+                        aria-current="page">Curated Links</a>
                 </li>
                 <li>
                     <a href="/guest-posts"
@@ -85,7 +85,7 @@
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">Packages</a>
                 </li> --}}
-                <li>
+                {{-- <li>
                     <a href="#"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">About</a>
@@ -94,7 +94,7 @@
                     <a href="#"
                         class="block py-2 px-3 md:p-0 text-primary-dark hover:text-primary"
                         aria-current="page">Contact</a>
-                </li>
+                </li> --}}
             </ul>
             <div class="mt-4 flex flex-col md:hidden gap-y-3">
                 <a href="/register" class="bg-primary hover:bg-primary-dark text-white text-base font-medium py-2 px-6 border-2 border-primary hover:border-primary-dark rounded-lg transition duration-300 inline-flex justify-center items-center gap-2">
