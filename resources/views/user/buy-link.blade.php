@@ -1,48 +1,3 @@
-{{-- @extends('layouts.user.user')
-
-@section('content')
-    <div class="container">
-        <h1>Place Order for {{ $website->name }}</h1>
-
-        <!-- Display website details -->
-        <div class="website-details">
-            <p><strong>Traffic:</strong> {{ $website->monthly_traffic }} visitors/month</p>
-            <p><strong>Domain Authority (DA):</strong> {{ $website->domain_authority }}</p>
-            <p><strong>Domain Rating (DR):</strong> {{ $website->domain_rating }}</p>
-            <p><strong>Type:</strong>
-                {{ is_string($website->allowed_link_types) ? implode(', ', json_decode($website->allowed_link_types)) : implode(', ', $website->allowed_link_types) }}
-            </p>
-            <p><strong>Categories:</strong>
-                {{ $website->categories->pluck('name')->join(', ') }}
-            </p>
-            <p><strong>Price:</strong> ${{ $website->price }}</p>
-        </div>
-
-        <!-- Order Form -->
-        <form action="{{ url('/websites/buy-link') }}" method="POST">
-            @csrf
-            <input type="hidden" name="website_id" value="{{ $website->id }}">
-
-            <div class="form-group">
-                <label for="requested_url">Requested URL:</label>
-                <input type="url" id="requested_url" name="requested_url" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="link_text">Link Text:</label>
-                <input type="text" id="link_text" name="link_text" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="notes">Notes:</label>
-                <textarea id="notes" name="notes" class="form-control"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Place Order</button>
-        </form>
-    </div>
-@endsection --}}
-
 @extends('layouts.user.user')
 
 @section('content')
@@ -190,7 +145,7 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit"
+                        <button type="submit" id="submit-btn"
                             class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-md hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition hover:-translate-y-0.5">
                             Place Order
                         </button>
@@ -199,4 +154,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            const button = document.getElementById('submit-btn');
+            button.innerHTML = 'Placing Order...';
+            button.disabled = true;
+            button.classList.add('opacity-75', 'cursor-not-allowed');
+        });
+    </script>
 @endsection

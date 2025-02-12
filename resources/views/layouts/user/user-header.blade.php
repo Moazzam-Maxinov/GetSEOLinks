@@ -5,11 +5,6 @@
             <h6 class="text-3xl font-semibold whitespace-nowrap text-primary-dark dark:text-white">GetSEOLinks</h6>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <!-- React Toggle Switch will be injected here -->
-            {{-- @viteReactRefresh
-            @vite('resources/js/components/user/RoleToggleSwitch.jsx')
-            <div id="react-toggle-switch"></div> --}}
-
             <!-- User Icon -->
             <button type="button"
                 class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -29,7 +24,7 @@
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('user.dashboard') }}"
                             class="flex items-center px-4 py-2 text-base text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                             <x-lucide-house class="w-4 h-4 mr-2 text-gray-500" />
                             Dashboard
@@ -126,7 +121,7 @@
                 </li> --}}
                 <li>
                     <x-lucide-shopping-cart class="w-4 h-4 mr-1 text-gray-500 inline" />
-                    <a href="/vendor/orders"
+                    <a href="{{ route('buyer-all-orders') }}"
                         class="blsock py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</a>
                 </li>
                 <li>
@@ -138,46 +133,3 @@
         </div>
     </div>
 </nav>
-
-{{-- @push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleSwitch = document.getElementById('role-toggle');
-        const roleLabel = document.getElementById('role-label');
-
-        // Set the initial state of the toggle based on the data-role attribute
-        const navElement = document.querySelector('nav[data-role]');
-        const currentRole = navElement.getAttribute('data-role');
-        toggleSwitch.checked = currentRole === 'publisher';
-
-        // Add event listener for the toggle switch
-        toggleSwitch.addEventListener('change', function() {
-            const newRole = toggleSwitch.checked ? 'publisher' : 'vendor';
-
-            // Send a POST request to switch the role
-            fetch('/api/switch-role', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token for Laravel
-                    },
-                    body: JSON.stringify({
-                        role: newRole
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Reload the page to reflect the new role
-                        window.location.reload();
-                    } else {
-                        console.error('Failed to switch role:', data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    });
-</script>
-@endpush --}}

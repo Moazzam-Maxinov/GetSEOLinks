@@ -154,13 +154,25 @@ const VendorAllOrders = () => {
             accessorKey: "status",
             header: "Status",
             cell: ({ row }) => (
-                <span
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getStatusStyles(
-                        row.original.status
-                    )}`}
-                >
-                    {row.original.status}
-                </span>
+                <div>
+                    <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getStatusStyles(
+                            row.original.status
+                        )}`}
+                    >
+                        {row.original.status}
+                    </span>
+                    {row.original.status.toLowerCase() === "completed" &&
+                        (!row.original.vendor_status ||
+                            row.original.vendor_status.trim() === "") && (
+                            <>
+                                <br></br>
+                                <div className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 mt-2">
+                                    buyer review pending
+                                </div>
+                            </>
+                        )}
+                </div>
             ),
         },
         {
@@ -202,27 +214,16 @@ const VendorAllOrders = () => {
             header: "Actions",
             cell: ({ row }) => (
                 <div className="flex justify-center">
-                    {row.original.status.toLowerCase() === "inprogress" ? (
-                        <Button
-                            variant="default"
-                            size="sm"
-                            onClick={() => {}}
-                            className="bg-blue-600 hover:bg-blue-700"
-                        >
-                            Manage Order
-                        </Button>
-                    ) : (
-                        <Button
-                            variant="default"
-                            size="sm"
-                            onClick={() => {
-                                window.location.href = `/vendor/review-order?orderId=${row.original.id}`;
-                            }}
-                            className="bg-green-600 hover:bg-green-700"
-                        >
-                            Review Order
-                        </Button>
-                    )}
+                    <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => {
+                            window.location.href = `/manage-order?orderId=${row.original.id}`;
+                        }}
+                        className="bg-blue-600 hover:bg-blue-700"
+                    >
+                        Manager Order
+                    </Button>
                 </div>
             ),
         },
@@ -284,7 +285,7 @@ const VendorAllOrders = () => {
         onSortingChange: setSorting,
         initialState: {
             pagination: {
-                pageSize: 5,
+                pageSize: 25,
             },
         },
     });
@@ -302,7 +303,7 @@ const VendorAllOrders = () => {
         <Card className="w-full">
             <CardHeader>
                 <CardTitle className="text-2xl font-bold text-primary">
-                    Published Orders
+                    Browse All Orders
                 </CardTitle>
             </CardHeader>
             <CardContent>

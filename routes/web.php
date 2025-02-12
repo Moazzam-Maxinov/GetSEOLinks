@@ -82,9 +82,14 @@ Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/publisher/orders/new', [PublisherServiceController::class, 'newPublisherOrders'])->name('user.publisher-new-orders');
     Route::get('/publisher/orders', [PublisherServiceController::class, 'allPublisherOrders'])->name('user.publisher-all-orders');
     Route::get('/publisher/orders/manage-order', [PublisherServiceController::class, 'manageOrder'])->name('user.manage-order');
-    Route::get('/vendor/orders', [VendorServiceController::class, 'allVendorOrders'])->name('user.vendor-all-orders');
-    Route::get('/vendor/review-order', [VendorServiceController::class, 'reviewOrder'])->name('user.review-order');
+
+    // Route::get('/vendor/orders', [VendorServiceController::class, 'allVendorOrders'])->name('user.vendor-all-orders');
+    Route::get('/orders', [VendorServiceController::class, 'allVendorOrders'])->name('buyer-all-orders');
+
+    // Route::get('/vendor/review-order', [VendorServiceController::class, 'reviewOrder'])->name('user.review-order');
+    Route::get('/manage-order', [VendorServiceController::class, 'manageOrder'])->name('buyer-manage-order');
     Route::post('/vendor/review-order', [VendorServiceController::class, 'reviewOrderPost'])->name('user.review-order-post');
+
     Route::get('/websites', [VendorServiceController::class, 'allWebsites'])->name('user.allWebsites');
     Route::get('/websites/buy-link', [VendorServiceController::class, 'buyLink'])->name('user.buyLink');
     Route::post('/websites/buy-link', [VendorServiceController::class, 'placeOrder'])->name('user.placeOrder');
@@ -99,6 +104,9 @@ Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/api/dashboard-data', [UserController::class, 'fetchDashboardData'])->name('user.fetchDashboardData');
     Route::post('/api/switch-role', [UserController::class, 'switchRole'])->name('user.switchRole');
     Route::get('/api/publisher-data', [UserController::class, 'getPublisherDashbordData'])->name('user.getPublisherDashbordData');
+
+    Route::get('/api/buyer-summary-data', [UserController::class, 'getBuyerDashbordData'])->name('buyer-summary-data');
+
     Route::get('/api/publisher/orders/new', [PublisherServiceController::class, 'getNewPublisherOrders'])->name('getNewPublisherOrders');
     Route::get('/api/publisher/orders', [PublisherServiceController::class, 'getAllPublisherOrders'])->name('getAllPublisherOrders');
     Route::get('/api/vendor/orders', [VendorServiceController::class, 'getAllVendorOrders'])->name('getAllVendorOrders');

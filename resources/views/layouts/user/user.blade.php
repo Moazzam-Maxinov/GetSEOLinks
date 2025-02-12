@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/logo1.ico') }}" type="image/x-icon">
     <title>{{ Auth::user()->name . "'s Dashboard" ?? 'User Dashboard' }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <meta name="csrf-token" content="{{ csrf_token() }}">
