@@ -118,4 +118,36 @@ class UserController extends Controller
 
         return response()->json($data);
     }
+
+    public function getBuyerDashbordData()
+    {
+        $userId = Auth::id(); // Get the authenticated user's ID
+
+        $pendingOrderCount = PublisherOrder::where('ordered_by', $userId)
+            ->where('status', 'pending')
+            ->count();
+
+        $totalOrderCount = PublisherOrder::where('ordered_by', $userId)->count();
+
+        $tasksPendingCount = PublisherOrder::where('ordered_by', $userId)
+            ->where('status', 'completed')
+            ->where(function ($query) {
+                $query->whereNull('vendor_status')
+                    ->orWhere('vendor_status', '');
+            })
+            ->count();
+
+        $inPprogressOrderCount = PublisherOrder::where('ordered_by', $userId)
+            ->where('status', 'inprogress')
+            ->count();
+
+        $data = [
+            'total_orders' =>  $totalOrderCount,
+            'pending_orders' => $pendingOrderCount,
+            'tasks_pending' => $tasksPendingCount,
+            'inprogress_orders' => $inPprogressOrderCount,
+        ];
+
+        return response()->json($data);
+    }
 }

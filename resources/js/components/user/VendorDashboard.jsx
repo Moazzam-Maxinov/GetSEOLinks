@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import BuyerSummaryCards from "./BuyerSummaryCards";
 import {
     flexRender,
     getCoreRowModel,
@@ -12,6 +13,7 @@ import {
     ChevronLeft,
     ChevronRight,
     Filter,
+    MoveRight,
 } from "lucide-react";
 import {
     Table,
@@ -178,10 +180,18 @@ function VendorDashboard() {
 
     return (
         <div>
+            <BuyerSummaryCards />
             <Card className="w-full">
-                <CardHeader>
-                    <CardTitle>Websites</CardTitle>
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <CardTitle>Choose a Website for Your Order</CardTitle>
+                    <a
+                        href="/websites"
+                        className="text-sm text-blue-600 cursor-pointer hover:underline"
+                    >
+                        Browse all websites <MoveRight className="inline" />
+                    </a>
                 </CardHeader>
+
                 <CardContent className="p-6">
                     <div className="rounded-md border">
                         <Table>

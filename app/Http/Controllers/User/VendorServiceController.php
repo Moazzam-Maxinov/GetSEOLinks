@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 class VendorServiceController extends Controller
 {
@@ -49,6 +51,7 @@ class VendorServiceController extends Controller
             'website' => $website,
         ]);
     }
+
     // Handle the form submission and insert data into publisher_orders table
     public function placeOrder(Request $request)
     {
@@ -63,28 +66,56 @@ class VendorServiceController extends Controller
         // Get the current logged-in user's ID
         $orderedBy = auth()->id();
 
-        // Get the website details
-        $website = Website::find($request->website_id);
+        try {
+            // Get the website details
+            $website = Website::find($request->website_id);
 
-        if (!$website) {
-            return redirect()->back()->with('error', 'Website not found.');
+            if (!$website) {
+                return redirect()->back()->with('error', 'Website not found.');
+            }
+
+            // Insert the new order into the publisher_orders table
+            $order = PublisherOrder::create([
+                'ordered_by' => $orderedBy,
+                'ordered_to' => $website->user_id,
+                'site_id' => $website->id,
+                'requested_url' => $request->requested_url,
+                'link_text' => $request->link_text,
+                'price' => $website->price, // You may need to adjust depending on the website data
+                'notes' => $request->notes,
+                'status' => 'pending', // Default status
+            ]);
+
+            // Additional code to save the order...
+            $orderDetails = [
+                'url' => $request->requested_url,
+                'link_text' => $request->link_text,
+                'notes' => $request->notes,
+                'website' => $website->name,
+                'ordered_by' => $orderedBy,
+                'order_date' => now(),
+                'id' => $order->id,
+            ];
+
+            $userEmail = Auth::user()->email;
+
+            // Send the email
+            Mail::to($userEmail) // Replace with the actual buyer's email
+                ->bcc(['buyerorders@getseolinks.com', 'shaheen@maxinov.com'])
+                ->send(new OrderConfirmationMail($orderDetails));
+
+            // Redirect or return a response
+            // Redirect to the order confirmation page with the order ID
+            return redirect()->route('user.order-confirmation', ['orderId' => $order->id]);
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error placing order: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'An error occurred while placing your order. Please try again.');
         }
-
-        // Insert the new order into the publisher_orders table
-        $order = PublisherOrder::create([
-            'ordered_by' => $orderedBy,
-            'ordered_to' => $website->user_id,
-            'site_id' => $website->id,
-            'requested_url' => $request->requested_url,
-            'link_text' => $request->link_text,
-            'price' => $website->price, // You may need to adjust depending on the website data
-            'notes' => $request->notes,
-            'status' => 'pending', // Default status
-        ]);
-
-        // Redirect or return a response
-        // Redirect to the order confirmation page with the order ID
-        return redirect()->route('user.order-confirmation', ['orderId' => $order->id]);
     }
 
     public function orderConfirmation(Request $request)
@@ -105,18 +136,44 @@ class VendorServiceController extends Controller
         return view("user.vendor-all-orders");
     }
 
-    public function reviewOrder(Request $request)
+    //Manage all the orders
+    public function manageOrder(Request $request)
     {
+        // Retrieve the 'orderId' from the query parameters
         $orderId = $request->query('orderId');
 
+        // If 'orderId' is missing, return a 404 response
         if (!$orderId) {
             abort(404, 'Order ID not provided.');
         }
 
-        $order = PublisherOrder::with('site')->findOrFail($orderId);
+        // Get the currently logged-in user's ID
+        $userId = auth()->id();
 
-        // dd($order);
+        try {
+            // Attempt to find the order where 'ordered_by' matches the logged-in user
+            $order = PublisherOrder::with('site')
+                ->where('ordered_by', $userId)
+                ->where('id', $orderId)
+                ->first();
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Database error retrieving order', [
+                'orderId' => $orderId ?? 'N/A',
+                'userId' => $userId,
+                'error' => $e->getMessage()
+            ]);
 
+            // Return a 500 error only for unexpected issues
+            abort(500, 'An error occurred while retrieving the order.');
+        }
+
+        // If no order is found, return a 404 response
+        if (!$order) {
+            abort(404, 'Order not found.');
+        }
+
+        // Return the view with the retrieved order details
         return view('user.review-order-vendor', compact('order'));
     }
 
@@ -272,7 +329,8 @@ class VendorServiceController extends Controller
             'publisher_orders.price',
             'publisher_orders.status',
             'publisher_orders.notes',
-            'publisher_orders.created_at'
+            'publisher_orders.created_at',
+            'publisher_orders.vendor_status',
         )
             ->join('websites', 'publisher_orders.site_id', '=', 'websites.id')
             ->where('publisher_orders.ordered_by', $userId)

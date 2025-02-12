@@ -411,7 +411,7 @@ const WebsitesTable = ({ initialCategories }) => {
             <FilterCard />
             <Card className="w-full">
                 <CardHeader>
-                    <CardTitle>Websites</CardTitle>
+                    <CardTitle>Choose a Website for Your Order</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
                     <div className="rounded-md border">
