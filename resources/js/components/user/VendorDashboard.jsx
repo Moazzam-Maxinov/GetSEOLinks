@@ -231,7 +231,7 @@ function VendorDashboard() {
                     </div>
 
                     {/* Pagination Controls */}
-                    <div className="flex items-center justify-between px-2 py-4">
+                    {/* <div className="flex items-center justify-between px-2 py-4">
                         <div className="flex items-center gap-2">
                             <p className="text-sm text-gray-700">
                                 Rows per page:
@@ -301,7 +301,7 @@ function VendorDashboard() {
                                 </Button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </CardContent>
             </Card>
         </div>

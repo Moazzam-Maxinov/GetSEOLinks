@@ -127,6 +127,37 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Sitemap Generation Code
+Route::get('/sitemap.xml', function () {
+    // Unprotected URLs (public routes)
+    $urls = [
+        url('/'),
+        url('/privacy-policy'),
+        url('/terms-and-condition'),
+        route('guest-posts'),
+        route('curated-links'),
+        url('/login'),
+        url('/register'),
+    ];
+
+    // XML structure banane ke liye SimpleXMLElement ka istemal
+    $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset></urlset>');
+    $xml->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+    foreach ($urls as $loc) {
+        $url = $xml->addChild('url');
+        $url->addChild('loc', htmlspecialchars($loc, ENT_QUOTES, 'UTF-8'));
+        // Last modification date ko current date set kar rahe hain.
+        $url->addChild('lastmod', date('Y-m-d'));
+        // Change frequency aur priority set kar sakte hain
+        $url->addChild('changefreq', 'weekly');
+        $url->addChild('priority', '1.0');
+    }
+
+    // XML response return karte waqt content-type header ko application/xml set karein
+    return response($xml->asXML(), 200)->header('Content-Type', 'application/xml');
+});
+
 // Logout Route
 // Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
