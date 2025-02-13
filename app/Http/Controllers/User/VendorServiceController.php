@@ -57,8 +57,8 @@ class VendorServiceController extends Controller
     {
         // Validate the incoming data
         $request->validate([
-            'requested_url' => 'required|url',
-            'link_text' => 'nullable|string|max:255',
+            'requested_url' => 'required|string|max:255',
+            'link_text' => 'required|string|max:255',  // Changed from nullable to required
             'notes' => 'nullable|string',
             'website_id' => 'required|exists:websites,id',
         ]);
@@ -260,51 +260,7 @@ class VendorServiceController extends Controller
         return view("user.contact");
     }
 
-    //API Routes
-    // public function getAllWebsites(Request $request)
-    // {
-    //     $query = Website::with('categories');
-
-    //     // Handle pagination
-    //     $perPage = $request->input('perPage', 10);
-    //     $page = $request->input('page', 1);
-
-    //     // Get total count for pagination
-    //     $totalCount = $query->count();
-
-    //     // Get paginated results
-    //     $websites = $query->skip(($page - 1) * $perPage)
-    //         ->take($perPage)
-    //         ->get()
-    //         ->map(function ($website) {
-    //             return [
-    //                 'id' => $website->id,
-    //                 'name' => $website->name,
-    //                 'masked_url' => $website->masked_url,
-    //                 'monthly_traffic' => $website->monthly_traffic,
-    //                 'domain_authority' => $website->domain_authority,
-    //                 'domain_rating' => $website->domain_rating,
-    //                 'price' => $website->price,
-    //                 'allowed_link_types' => $website->allowed_link_types,
-    //                 'categories' => $website->categories->map(function ($category) {
-    //                     return [
-    //                         'id' => $category->id,
-    //                         'name' => $category->name
-    //                     ];
-    //                 })
-    //             ];
-    //         });
-
-    //     return response()->json([
-    //         'data' => $websites,
-    //         'meta' => [
-    //             'total' => $totalCount,
-    //             'page' => $page,
-    //             'perPage' => $perPage,
-    //             'lastPage' => ceil($totalCount / $perPage)
-    //         ]
-    //     ]);
-    // }
+    //API ROUTES
 
     public function getAllVendorOrders()
     {
@@ -313,7 +269,8 @@ class VendorServiceController extends Controller
         // Fetch the orders with the required fields and join with the websites table
         $orders = PublisherOrder::select(
             'publisher_orders.id',
-            'websites.masked_url as site_url',
+            // 'websites.masked_url as site_url',
+            'websites.url as site_url',
             'publisher_orders.requested_url',
             'publisher_orders.link_text',
             'publisher_orders.price',
@@ -451,6 +408,196 @@ class VendorServiceController extends Controller
                     })
                 ];
             });
+
+        return response()->json([
+            'data' => $websites,
+            'meta' => [
+                'total' => $totalCount,
+                'page' => $page,
+                'perPage' => $perPage,
+                'lastPage' => ceil($totalCount / $perPage)
+            ]
+        ]);
+    }
+
+    public function getAllWebsitesDashboard(Request $request)
+    {
+        $query = Website::with('categories');
+
+        // Apply filters
+        if ($request->has('filters')) {
+            $filters = $request->filters;
+
+            // Category filter
+            if (!empty($filters['categories'])) {
+                $query->whereHas('categories', function ($q) use ($filters) {
+                    $q->whereIn('categories.id', $filters['categories']);
+                });
+            }
+
+            // Traffic filter
+            if (isset($filters['traffic'])) {
+                $query->whereBetween('monthly_traffic', [
+                    $filters['traffic']['min'],
+                    $filters['traffic']['max']
+                ]);
+            }
+
+            // DA filter
+            if (isset($filters['da'])) {
+                $query->whereBetween('domain_authority', [
+                    $filters['da']['min'],
+                    $filters['da']['max']
+                ]);
+            }
+
+            // DR filter
+            if (isset($filters['dr'])) {
+                $query->whereBetween('domain_rating', [
+                    $filters['dr']['min'],
+                    $filters['dr']['max']
+                ]);
+            }
+
+            // Price filter
+            if (isset($filters['price'])) {
+                $query->whereBetween('price', [
+                    $filters['price']['min'],
+                    $filters['price']['max']
+                ]);
+            }
+        }
+
+        // Handle pagination
+        $perPage = $request->input('perPage', 10);
+        $page = $request->input('page', 1);
+
+        // Get total count for pagination
+        $totalCount = $query->count();
+
+        // Get paginated results
+        $websites = $query->skip(($page - 1) * $perPage)
+            ->take($perPage)
+            ->get()
+            ->map(function ($website) {
+                return [
+                    'id' => $website->id,
+                    // 'name' => $website->name,
+                    'masked_url' => $website->url,
+                    'monthly_traffic' => $website->monthly_traffic,
+                    'domain_authority' => $website->domain_authority,
+                    'domain_rating' => $website->domain_rating,
+                    'price' => $website->price,
+                    'allowed_link_types' => $website->allowed_link_types,
+                    'categories' => $website->categories->map(function ($category) {
+                        return [
+                            'id' => $category->id,
+                            'name' => $category->name
+                        ];
+                    })
+                ];
+            });
+
+        return response()->json([
+            'data' => $websites,
+            'meta' => [
+                'total' => $totalCount,
+                'page' => $page,
+                'perPage' => $perPage,
+                'lastPage' => ceil($totalCount / $perPage)
+            ]
+        ]);
+    }
+
+    //The monthly price has been implemented in this
+    public function getAllWebsitesDashboardWithMonthlyPrice(Request $request)
+    {
+        $query = Website::with('categories');
+
+        // Apply filters
+        if ($request->has('filters')) {
+            $filters = $request->filters;
+
+            // Category filter
+            if (!empty($filters['categories'])) {
+                $query->whereHas('categories', function ($q) use ($filters) {
+                    $q->whereIn('categories.id', $filters['categories']);
+                });
+            }
+
+            // Traffic filter
+            if (isset($filters['traffic'])) {
+                $query->whereBetween('monthly_traffic', [
+                    $filters['traffic']['min'],
+                    $filters['traffic']['max']
+                ]);
+            }
+
+            // DA filter
+            if (isset($filters['da'])) {
+                $query->whereBetween('domain_authority', [
+                    $filters['da']['min'],
+                    $filters['da']['max']
+                ]);
+            }
+
+            // DR filter
+            if (isset($filters['dr'])) {
+                $query->whereBetween('domain_rating', [
+                    $filters['dr']['min'],
+                    $filters['dr']['max']
+                ]);
+            }
+
+            // Monthly Price filter
+            if (isset($filters['monthly_price'])) {
+                $query->whereBetween('monthly_price', [
+                    $filters['monthly_price']['min'],
+                    $filters['monthly_price']['max']
+                ]);
+            }
+
+            // Price filter
+            if (isset($filters['price'])) {
+                $query->whereBetween('price', [
+                    $filters['price']['min'],
+                    $filters['price']['max']
+                ]);
+            }
+        }
+
+        // Handle pagination
+        $perPage = $request->input('perPage', 10);
+        $page = $request->input('page', 1);
+
+        // Get total count for pagination
+        $totalCount = $query->count();
+
+        // Get paginated results
+        $websites = $query->skip(($page - 1) * $perPage)
+            ->take($perPage)
+            ->get()
+            ->map(function ($website) {
+                return [
+                    'id' => $website->id,
+                    // 'name' => $website->name,
+                    'masked_url' => $website->masked_url,
+                    'monthly_traffic' => $website->monthly_traffic,
+                    'domain_authority' => $website->domain_authority,
+                    'domain_rating' => $website->domain_rating,
+                    'monthly_price' => $website->monthly_price, // Add this line
+                    'price' => $website->price,
+                    'allowed_link_types' => $website->allowed_link_types,
+                    'categories' => $website->categories->map(function ($category) {
+                        return [
+                            'id' => $category->id,
+                            'name' => $category->name
+                        ];
+                    })
+                ];
+            });
+
+        // dd($websites);
 
         return response()->json([
             'data' => $websites,

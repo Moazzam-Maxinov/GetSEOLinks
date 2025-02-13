@@ -111,6 +111,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
     Route::get('/api/publisher/orders', [PublisherServiceController::class, 'getAllPublisherOrders'])->name('getAllPublisherOrders');
     Route::get('/api/vendor/orders', [VendorServiceController::class, 'getAllVendorOrders'])->name('getAllVendorOrders');
     Route::get('/api/getAllWebsites', [VendorServiceController::class, 'getAllWebsites'])->name('getAllWebsites');
+    Route::get('/api/getAllWebsitesDashboard', [VendorServiceController::class, 'getAllWebsitesDashboard'])->name('getAllWebsitesDashboard');
     Route::get('/api/getAllCategories', [VendorServiceController::class, 'getAllCategories'])->name('getAllCategories');
     Route::get('/api/getOrderById', [PublisherServiceController::class, 'getOrderById'])->name('getOrderById');
     Route::post('/api/publisher/updateOrderStatus', [PublisherServiceController::class, 'updateOrderStatus'])->name('updateOrderStatus');

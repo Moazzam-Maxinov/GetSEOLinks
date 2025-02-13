@@ -6,12 +6,12 @@
             <!-- Header Section -->
             <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-lg p-6 mb-8">
                 <h1 class="text-3xl font-bold text-white">
-                    Place Order for {{ $website->masked_url }}
+                    Place Order for {{ $website->url }}
                 </h1>
             </div>
 
             <!-- Website Details Card -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8 border-t-4">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Website Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="flex items-center space-x-2">
@@ -111,33 +111,39 @@
             </div>
 
             <!-- Order Form Card -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Details</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 border-t-2">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">Fill in the Order Details</h2>
                 <form action="{{ url('/websites/buy-link') }}" method="POST" class="space-y-6">
                     @csrf
                     <input type="hidden" name="website_id" value="{{ $website->id }}">
 
                     <div>
                         <label for="requested_url" class="block text-sm font-medium text-gray-700 mb-1">
-                            Requested URL
+                            Requested URL <span class="text-red-600 font-semibold">*</span><span
+                                class="text-xs text-gray-600 italic pl-2">(Enter the URL where you want the link to direct
+                                for
+                                the site you wish to promote)</span>
                         </label>
-                        <input type="url" id="requested_url" name="requested_url"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                            required placeholder="https://example.com/your-page">
+                        <input type="text" id="requested_url" name="requested_url"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                            required placeholder="Enter your URL (e.g., https://example.com or www.example.com)">
                     </div>
 
                     <div>
                         <label for="link_text" class="block text-sm font-medium text-gray-700 mb-1">
-                            Link Text
+                            Link Text <span class="text-red-600 font-semibold">*</span><span
+                                class="text-xs text-gray-600 italic pl-2">(Enter the anchor text you want displayed/use for
+                                the link)</span>
                         </label>
                         <input type="text" id="link_text" name="link_text"
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="Enter your anchor text">
+                            required placeholder="Enter your anchor text">
                     </div>
 
                     <div>
                         <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">
-                            Notes
+                            Notes <span class="text-xs text-gray-600 italic pl-2">(Provide any additional instructions or
+                                details for your order. Leave it blank if none.)</span>
                         </label>
                         <textarea id="notes" name="notes" rows="4"
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
@@ -155,11 +161,50 @@
         </div>
     </div>
     <script>
-        document.querySelector('form').addEventListener('submit', function() {
-            const button = document.getElementById('submit-btn');
-            button.innerHTML = 'Placing Order...';
-            button.disabled = true;
-            button.classList.add('opacity-75', 'cursor-not-allowed');
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[action*="/websites/buy-link"]');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    const button = document.getElementById('submit-btn');
+                    button.innerHTML = 'Placing Order...';
+                    button.disabled = true;
+                    button.classList.add('opacity-75', 'cursor-not-allowed');
+                });
+            }
+
+            // URL validation
+            const urlInput = document.getElementById('requested_url');
+            if (urlInput) {
+                urlInput.addEventListener('input', function() {
+                    // URL pattern that accepts http://, https://, or www.
+                    const urlPattern = /^(https?:\/\/|www\.)[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}(\/\S*)?$/;
+
+                    if (this.value.trim() === '') {
+                        this.setCustomValidity('URL is required');
+                    } else if (!urlPattern.test(this.value)) {
+                        this.setCustomValidity(
+                            'Please enter a valid URL starting with http://, https://, or www.');
+                    } else {
+                        this.setCustomValidity('');
+                    }
+
+                    // Add visual feedback classes
+                    if (this.validity.valid) {
+                        this.classList.remove('border-red-500');
+                        this.classList.add('border-green-500');
+                    } else {
+                        this.classList.remove('border-green-500');
+                        this.classList.add('border-red-500');
+                    }
+                });
+
+                // Show validation message on blur
+                urlInput.addEventListener('blur', function() {
+                    if (!this.validity.valid) {
+                        this.reportValidity();
+                    }
+                });
+            }
         });
     </script>
 @endsection

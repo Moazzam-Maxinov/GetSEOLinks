@@ -9,6 +9,7 @@ use App\Models\CustomerRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\PublisherOrder;
+use App\Models\Category;
 
 class UserController extends Controller
 {
@@ -23,8 +24,18 @@ class UserController extends Controller
         // Set the role (default to 'vendor' if no role is found)
         $role = $customerRole ? $customerRole->role : 'vendor';
 
+        $categories = Category::select('id', 'name')
+            ->where('status', '1')
+            ->orderBy('name')
+            ->get();
+
+
         // Pass the role to the view
-        return view('user.dashboard', compact('role'));
+        // return view('user.dashboard', compact('role'));
+        return view('user.dashboard', [
+            'role'              => $role,
+            'initialCategories' => $categories,
+        ]);
     }
 
     // Render the change password form

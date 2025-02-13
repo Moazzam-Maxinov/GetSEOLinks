@@ -3,6 +3,7 @@
 
 @section('content')
     {{-- @viteReactRefresh --}}
+    {{-- <h1>{{ $role }}</h1> --}}
 
     @if ($role == 'publisher')
         @viteReactRefresh
@@ -11,7 +12,7 @@
     @else
         @viteReactRefresh
         @vite('resources/js/components/user/VendorDashboard.jsx')
-        <div id="vendor-dashboard" class="px-6"></div>
+        <div id="vendor-dashboard" class="px-6" data-categories="{{ json_encode($initialCategories) }}"></div>
     @endif
     {{-- @viteReactRefresh
     @vite('resources/js/components/user/PublisherDashboard.jsx')
