@@ -52,7 +52,8 @@
 
                     <!-- URL Section -->
                     <div class="mb-4 p-4 bg-blue-50 rounded-lg">
-                        <p class="text-sm font-medium text-gray-500 mb-1">Requested URL</p>
+                        {{-- <p class="text-sm font-medium text-gray-500 mb-1">Requested URL</p> --}}
+                        <p class="text-sm font-medium text-gray-500 mb-1">Shared Document URL</p>
                         <div class="flex items-center">
                             <svg class="h-5 w-5 text-blue-600 mr-2" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -67,7 +68,7 @@
                     </div>
 
                     <!-- Link Text -->
-                    <div class="mb-4 p-4 bg-yellow-50 rounded-lg">
+                    {{-- <div class="mb-4 p-4 bg-yellow-50 rounded-lg">
                         <p class="text-sm font-medium text-gray-500 mb-1">Link Text</p>
                         <div class="flex items-center">
                             <svg class="h-5 w-5 text-yellow-600 mr-2" fill="none" stroke="currentColor"
@@ -77,7 +78,7 @@
                             </svg>
                             <p class="text-gray-900 font-medium">{{ $order->link_text ?? 'N/A' }}</p>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Price -->
                     <div class="mb-4 p-4 bg-green-50 rounded-lg">

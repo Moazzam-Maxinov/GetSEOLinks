@@ -1,6 +1,28 @@
 @extends('layouts.user.user')
 
 @section('content')
+    @if ($errors->any())
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">There were errors with your submission:</h3>
+                    <div class="mt-2 text-sm text-red-700">
+                        <ul class="list-disc pl-5 space-y-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="min-h-screen bg-gray-50 py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header Section -->
@@ -119,17 +141,22 @@
 
                     <div>
                         <label for="requested_url" class="block text-sm font-medium text-gray-700 mb-1">
-                            Requested URL <span class="text-red-600 font-semibold">*</span><span
-                                class="text-xs text-gray-600 italic pl-2">(Enter the URL where you want the link to direct
-                                for
-                                the site you wish to promote)</span>
+                            URL of the shared document (Google Drive, Dropbox, etc.)<span
+                                class="text-red-600 font-semibold">*</span>
                         </label>
                         <input type="text" id="requested_url" name="requested_url"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
-                            required placeholder="Enter your URL (e.g., https://example.com or www.example.com)">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 placeholder:text-xs"
+                            required placeholder="">
+                        @error('requested_url')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <span class=" text-gray-700 italic" style="font-size: 13px;">Enter the URL of the shared document
+                            containing
+                            guest
+                            post content or link insertion details (e.g., https://example.com or www.example.com).</span>
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <label for="link_text" class="block text-sm font-medium text-gray-700 mb-1">
                             Link Text <span class="text-red-600 font-semibold">*</span><span
                                 class="text-xs text-gray-600 italic pl-2">(Enter the anchor text you want displayed/use for
@@ -138,16 +165,21 @@
                         <input type="text" id="link_text" name="link_text"
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                             required placeholder="Enter your anchor text">
-                    </div>
+                    </div> --}}
 
                     <div>
                         <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">
-                            Notes <span class="text-xs text-gray-600 italic pl-2">(Provide any additional instructions or
-                                details for your order. Leave it blank if none.)</span>
+                            Notes
                         </label>
                         <textarea id="notes" name="notes" rows="4"
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="Any additional instructions or requirements..."></textarea>
+                            placeholder=""></textarea>
+                        @error('notes')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <span class="text-xs text-gray-600 italic" style="font-size: 13px;">(Provide any additional
+                            instructions or
+                            details for your order. Leave it blank if none.)</span>
                     </div>
 
                     <div class="flex justify-end">

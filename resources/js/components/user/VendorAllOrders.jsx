@@ -100,7 +100,11 @@ const VendorAllOrders = () => {
                     {/* <div className="font-medium">{row.original.site_name}</div> */}
                     <div className="text-sm text-muted-foreground">
                         <a
-                            href={row.original.site_url}
+                            href={
+                                row.original.site_url.startsWith("http")
+                                    ? row.original.site_url
+                                    : `https://${row.original.site_url}`
+                            }
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:underline"
@@ -113,7 +117,7 @@ const VendorAllOrders = () => {
         },
         {
             accessorKey: "link_details",
-            header: "Link Details",
+            header: "Shared Document URL",
             cell: ({ row }) => (
                 <div>
                     <div className="font-medium">{row.original.link_text}</div>
@@ -177,7 +181,7 @@ const VendorAllOrders = () => {
         },
         {
             accessorKey: "notes",
-            header: "Notes",
+            header: "Additional Notes",
             cell: ({ row }) => (
                 <div className="max-w-xs truncate" title={row.original.notes}>
                     {row.original.notes}
@@ -193,7 +197,7 @@ const VendorAllOrders = () => {
                         onClick={() => column.toggleSorting()}
                         className="px-0 font-semibold"
                     >
-                        Created
+                        Order Date
                         <ArrowUpDown className="ml-2 h-4 w-4" />
                     </Button>
                 );
@@ -213,7 +217,7 @@ const VendorAllOrders = () => {
             accessorKey: "actions",
             header: "Actions",
             cell: ({ row }) => (
-                <div className="flex justify-center">
+                <div className="flex justify-cesnter">
                     <Button
                         variant="default"
                         size="sm"
@@ -433,7 +437,10 @@ const VendorAllOrders = () => {
                             {table.getHeaderGroups().map((headerGroup) => (
                                 <TableRow key={headerGroup.id}>
                                     {headerGroup.headers.map((header) => (
-                                        <TableHead key={header.id}>
+                                        <TableHead
+                                            key={header.id}
+                                            className="bg-primary-BG1 font-semibold text-primary-dark"
+                                        >
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

@@ -66,7 +66,15 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                 return (
                     <div className="space-y-2">
                         <div className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1">
-                            <a href={website.masked_url} target="_blank">
+                            <a
+                                href={
+                                    website.masked_url.startsWith("http")
+                                        ? website.masked_url
+                                        : `https://${website.masked_url}`
+                                }
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
                                 {website.masked_url}
                             </a>
                         </div>
@@ -252,7 +260,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
     };
 
     const FilterCard = () => (
-        <Card className="mb-6  border-t-4 shadow">
+        <Card className="mb-6 border-t-4 shadow">
             <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                     <Filter className="w-5 h-5" />
@@ -311,7 +319,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                                     type="number"
                                     name="trafficMax"
                                     defaultValue={formValues.traffic.max}
-                                    className="w-20"
+                                    className="w-28"
                                     placeholder="Max"
                                 />
                             </div>

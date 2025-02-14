@@ -52,8 +52,62 @@ class VendorServiceController extends Controller
         ]);
     }
 
-    // Handle the form submission and insert data into publisher_orders table
     public function placeOrder(Request $request)
+    {
+        // Validate the incoming data with removed link_text validation
+        $request->validate([
+            'requested_url' => 'required|string|max:255',
+            'notes' => 'nullable|string',
+            'website_id' => 'required|exists:websites,id',
+        ]);
+
+        // Get the current logged-in user's ID
+        $orderedBy = auth()->id();
+
+        // Get the website details
+        $website = Website::find($request->website_id);
+
+        if (!$website) {
+            return redirect()->back()->with('error', 'Website not found.');
+        }
+
+        // Insert the new order into the publisher_orders table with empty link_text
+        $order = PublisherOrder::create([
+            'ordered_by' => $orderedBy,
+            'ordered_to' => $website->user_id,
+            'site_id' => $website->id,
+            'requested_url' => $request->requested_url,
+            'link_text' => '', // Set to empty string
+            'price' => $website->price,
+            'notes' => $request->notes,
+            'status' => 'pending',
+        ]);
+
+        // Additional code to save the order...
+        $orderDetails = [
+            'url' => $request->requested_url,
+            'link_text' => '', // Set to empty string in order details
+            'notes' => $request->notes,
+            'website' => $website->name,
+            'website_url' => $website->url,
+            'ordered_by' => $orderedBy,
+            'order_date' => now(),
+            'id' => $order->id,
+        ];
+
+        $userEmail = Auth::user()->email;
+
+        // Send the email
+        Mail::to($userEmail)
+            ->bcc(['buyerorders@getseolinks.com', 'shaheen@maxinov.com', 'moazzam@maxinovip.com'])
+            ->send(new OrderConfirmationMail($orderDetails));
+
+        // Redirect to the order confirmation page with the order ID
+        return redirect()->route('user.order-confirmation', ['orderId' => $order->id]);
+    }
+
+    // Handle the form submission and insert data into publisher_orders table
+    public function placeOrderOriginal(Request $request)
     {
         // Validate the incoming data
         $request->validate([

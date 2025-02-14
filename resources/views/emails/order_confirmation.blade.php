@@ -132,29 +132,27 @@
                 <p class="details-title">Order Details</p>
                 <ul>
                     <li>
-                        <strong>Order ID:</strong>
+                        <strong>Order ID: </strong>
                         <span class="order-value">{{ $orderDetails['id'] }}</span>
                     </li>
                     <li>
-                        <strong>URL:</strong>
+                        <strong>Shared Document URL: </strong>
                         <span class="order-value">{{ $orderDetails['url'] }}</span>
                     </li>
                     <li>
-                        <strong>Link Text:</strong>
-                        <span class="order-value">{{ $orderDetails['link_text'] }}</span>
+                        <strong>Website URL: </strong>
+                        <span class="order-value">{{ $orderDetails['website_url'] }}</span>
                     </li>
                     <li>
-                        <strong>Notes:</strong>
-                        <span class="order-value">{{ $orderDetails['notes'] }}</span>
-                    </li>
-                    <li>
-                        <strong>Website:</strong>
-                        <span class="order-value">{{ $orderDetails['website'] }}</span>
-                    </li>
-                    <li>
-                        <strong>Order Date:</strong>
+                        <strong>Order Date: </strong>
                         <span class="order-value">{{ $orderDetails['order_date'] }}</span>
                     </li>
+                    @if (!empty($orderDetails['notes']))
+                        <li>
+                            <strong>Additional Instructions: </strong>
+                            <span class="order-value">{{ $orderDetails['notes'] }}</span>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

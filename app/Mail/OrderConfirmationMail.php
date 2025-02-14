@@ -27,8 +27,8 @@ class OrderConfirmationMail extends Mailable
     public function build()
     {
         return $this
-            ->from('orders@getseolinks.com', 'GetSEO Links')
-            ->subject('Order Confirmation')
+            ->from('orders@getseolinks.com', 'GetSEOLinks')
+            ->subject('GetSEOLinks Order Confirmation')
             ->view('emails.order_confirmation')
             ->with('orderDetails', $this->orderDetails);
     }
