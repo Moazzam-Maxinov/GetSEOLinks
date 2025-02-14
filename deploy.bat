@@ -19,7 +19,7 @@ set "DESKTOP=%USERPROFILE%\Desktop"
 set "ZIP_NAME=%DESKTOP%\backup-%date:~10,4%%date:~4,2%%date:~7,2%.zip"
 
 :: Define exclude list
-set EXCLUDE_LIST=node_modules .git vendor storage/framework storage/logs bootstrap/cache/config.php
+set EXCLUDE_LIST=node_modules .git vendor storage/framework storage/logs bootstrap/cache/config.php .env .htaccess
 
 :: Convert list to proper tar format
 set "EXCLUDES="
