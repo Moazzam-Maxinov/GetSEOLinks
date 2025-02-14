@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import {
     flexRender,
@@ -38,6 +38,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const searchFormRef = useRef(null);
     const [formValues, setFormValues] = useState({
         traffic: { min: "0", max: "1000000" },
         da: { min: "0", max: "100" },
@@ -181,6 +182,23 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
         manualPagination: true,
         pageCount: pagination.pageCount,
     });
+
+    const handleCategoryChange = (value) => {
+        setSelectedCategory(value);
+
+        // Create new filters with the updated category
+        const newFilters = {
+            ...activeFilters,
+            categories: value ? [value] : [],
+        };
+
+        setActiveFilters(newFilters);
+        setPagination((prev) => ({
+            ...prev,
+            pageIndex: 0,
+        }));
+    };
+
     const handleSearch = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -267,7 +285,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSearch}>
+                <form onSubmit={handleSearch} ref={searchFormRef}>
                     <div className="flex items-center justify-between gap-4">
                         {/* Categories Filter */}
                         <div className="space-y-2">
@@ -276,7 +294,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                             </label>
                             <Select
                                 value={selectedCategory}
-                                onValueChange={setSelectedCategory}
+                                onValueChange={handleCategoryChange}
                             >
                                 <SelectTrigger className="w-96">
                                     <SelectValue placeholder="Select a category" />
@@ -433,10 +451,7 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                                 {table.getHeaderGroups().map((headerGroup) => (
                                     <TableRow key={headerGroup.id}>
                                         {headerGroup.headers.map((header) => (
-                                            <TableHead
-                                                key={header.id}
-                                                className="bg-primary-BG1 font-semibold text-primary-dark"
-                                            >
+                                            <TableHead key={header.id}>
                                                 {flexRender(
                                                     header.column.columnDef
                                                         .header,
@@ -502,12 +517,9 @@ const WebsitesTableWithFilter = ({ initialCategories }) => {
                         </div>
 
                         <div className="flex items-center gap-2">
-                            {/* <p className="text-sm text-gray-700">
+                            <p className="text-sm text-gray-700">
                                 Page {pagination.pageIndex + 1} of{" "}
                                 {pagination.pageCount}
-                            </p> */}
-                            <p className="text-sm text-gray-700">
-                                Page {pagination.pageIndex + 1}
                             </p>
                             <div className="flex items-center gap-2">
                                 <Button
