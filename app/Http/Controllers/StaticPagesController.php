@@ -22,8 +22,13 @@ class StaticPagesController extends Controller
         return view('common.guest-posts'); // This will render the 'home' view
     }
 
-    public function curatedLinks()
+    public function linkInsertions()
     {
-        return view('common.curated-links'); // This will render the 'home' view
+        return view('common.link-insertions'); // This will render the 'home' view
+    }
+
+    public function aboutUs()
+    {
+        return view('common.about-us'); // This will render the 'home' view
     }
 }

@@ -33,7 +33,9 @@ Route::get('/terms-and-condition', [StaticPagesController::class, 'termsAndCondi
 
 Route::get('/guest-posts', [StaticPagesController::class, 'guestPosts'])->name('guest-posts');
 
-Route::get('/curated-links', [StaticPagesController::class, 'curatedLinks'])->name('curated-links');
+Route::get('/link-insertions', [StaticPagesController::class, 'linkInsertions'])->name('link-insertions');
+
+Route::get('/about-us', [StaticPagesController::class, 'aboutUs'])->name('about-us');
 
 // Routes for Admin
 // All admin routes are prefixed with /admin and use the AdminController.

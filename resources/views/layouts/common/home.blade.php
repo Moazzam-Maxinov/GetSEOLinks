@@ -43,6 +43,9 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    {{-- Structured Schema --}}
+    @yield('schema')
+
     <!-- App CSS -->
     @vite('resources/css/app.css')
     @yield('styles') <!-- Include custom styles here -->

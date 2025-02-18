@@ -69,36 +69,36 @@
             </div>
 
             {{-- {/* Company Links */} --}}
-            <div class="hidden md:block w-full md:w-[20%]">
-                {{-- <h4 class="text-lg font-semibold text-primary mb-4">
+            <div class="w-full md:w-[20%]">
+                <h4 class="text-lg font-semibold text-primary mb-4">
                     Company
                 </h4>
                 <ul class="space-y-2 text-base">
-                    <li>
+                    {{-- <li>
                         <a
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Blog
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a
-                            href="#"
+                            href="/about-us"
                             class="text-primary-neutral hover:text-primary"
                         >
                             About Us
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a
                             href="#"
                             class="text-primary-neutral hover:text-primary"
                         >
                             Contact Us
                         </a>
-                    </li>
-                </ul> --}}
+                    </li> --}}
+                </ul>
             </div>
 
             {{-- {/* Services & Industries */} --}}
@@ -109,10 +109,10 @@
                 <ul class="space-y-2 text-base">
                     <li>
                         <a
-                            href="/curated-links"
+                            href="/link-insertions"
                             class="text-primary-neutral hover:text-primary"
                         >
-                        Curated Links
+                        Link Insertions
                         </a>
                     </li>
                     <li>

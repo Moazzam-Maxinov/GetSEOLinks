@@ -12,6 +12,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "../ui/accordion";
+import CTAStrip from "./CTAStrip";
 const GuestPosts = () => {
     return (
         <>
@@ -80,10 +81,10 @@ const GuestPosts = () => {
                             </h3>
                             <p className="text-primary-neutral/85">
                                 <a
-                                    href="/curated-links"
+                                    href="/link-insertions"
                                     className="text-primary hover:underline"
                                 >
-                                    Curated Links
+                                    Link Insertions
                                 </a>{" "}
                                 are widely seen as one of the best ways to build
                                 authority and boost your site's link profile.
@@ -211,24 +212,12 @@ const GuestPosts = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="bg-white">
-                <div className="container mx-auto px-6 lg:px-10">
-                    {/* Title */}
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 md:gap-6 bg-primary-BG3 px-8 md:px-16 py-10 md:py-16 rounded-lg text-white">
-                        <h5 className="text-3xl font-semibold">
-                            Increase Your Website Traffic With Our Guest Posts
-                            Service
-                        </h5>
-                        <a
-                            href="/register"
-                            className="bg-primary-light hover:bg-[#8adb0b] text-primary-BG3 text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
-                        >
-                            Buy Guest Posts <MoveRight />
-                        </a>
-                    </div>
-                </div>
-            </section>
-
+            <CTAStrip
+                ctaStripTitle="Increase Your Website Traffic With Our Guest Posts
+                            Service"
+                ctaButtonLabel="Buy Guest Posts"
+                ctaButtonLink="/register"
+            />
             {/* Trust Points Section */}
             <section className="py-16 md:py-28 bg-white space-y-16 md:space-y-40">
                 {/* First Point */}

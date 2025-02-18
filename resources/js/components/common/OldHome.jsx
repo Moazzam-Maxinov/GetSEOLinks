@@ -1,4 +1,11 @@
-import { MoveRight } from "lucide-react";
+import {
+    BadgeDollarSign,
+    CalendarCheck,
+    ChartNoAxesColumn,
+    Link2,
+    MoveRight,
+    Quote,
+} from "lucide-react";
 
 const OldHome = () => {
     return (

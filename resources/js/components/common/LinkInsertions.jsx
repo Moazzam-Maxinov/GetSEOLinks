@@ -12,14 +12,15 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "../ui/accordion";
-const CuratedLinks = () => {
+import CTAStrip from "./CTAStrip";
+const LinkInsertions = () => {
     return (
         <>
             {/* Page Hero Section */}
             <section className="py-12 md:py-16 text-white bg-primary-dark">
                 <div className="container mx-auto px-6 lg:px-10 w-full space-y-5 md:space-y-7">
                     <h1 className="text-4xl md:text-5xl font-semibold">
-                        Curated Links
+                        Link Insertions
                     </h1>
                     <p className="text-white/90 text-lg sm:text-xl w-full md:w-[50%] ">
                         Boost your website’s visibility, build its credibility,
@@ -28,7 +29,7 @@ const CuratedLinks = () => {
                     </p>
                     <p className="text-white/90 text-lg sm:text-xl w-full md:w-[40%] ">
                         For only <span className="font-bold">$55</span>, our
-                        handpicked Curated Links (Niche Edits) provide an
+                        handpicked Link Insertions (Niche Edits) provide an
                         affordable solution to improve your website’s SEO
                         performance.
                     </p>
@@ -36,7 +37,7 @@ const CuratedLinks = () => {
                         href="/register"
                         className="bg-primary hover:bg-primary/75 text-white text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
                     >
-                        Buy Curated Links <MoveRight />
+                        Buy Link Insertions <MoveRight />
                     </a>
                 </div>
             </section>
@@ -50,7 +51,7 @@ const CuratedLinks = () => {
                             <span className="text-primary text-2xl md:text-4xl">
                                 Why
                             </span>
-                            <br /> Over 1,500 SEOs Choose Our Curated Links
+                            <br /> Over 1,500 SEOs Choose Our Link Insertions
                         </h2>
                         <div className="space-y-6">
                             <p className="text-primary-neutral text-lg sm:text-xl opacity-75">
@@ -74,12 +75,12 @@ const CuratedLinks = () => {
                     <div className="w-full md:w-[35%]">
                         <div className="bg-primary-BG1 p-10 rounded-lg shadow-sm space-y-4">
                             <h3 className="text-primary-dark font-bold text-2xl">
-                                How do Curated Links Contribute To A Link
+                                How do Link Insertions Contribute To A Link
                                 Building Strategy?
                             </h3>
                             <p className="text-primary-neutral/85">
-                                Curated Links improve your website’s profile by
-                                being embedded within content that already
+                                Link Insertions improve your website’s profile
+                                by being embedded within content that already
                                 performs well. This placement means they pass on
                                 more “link juice” compared to other link types.
                                 Even though they might not offer as much content
@@ -106,7 +107,7 @@ const CuratedLinks = () => {
                             <span className="text-primary text-2xl md:text-4xl">
                                 Benefits
                             </span>
-                            <br /> Buying Curated Links From Us
+                            <br /> Buying Link Insertions From Us
                         </h2>
                     </div>
 
@@ -166,10 +167,12 @@ const CuratedLinks = () => {
                     <div className="text-center space-y-5">
                         <h2 className="text-4xl md:text-6xl font-bold text-primary-dark">
                             What Are {""}
-                            <span className="text-primary">Curated Links?</span>
+                            <span className="text-primary">
+                                Link Insertions?
+                            </span>
                         </h2>
                         <p className="text-primary-neutral/75 text-lg sm:text-xl px-0 md:px-16">
-                            Curated Links, often referred to as “Niche Edits,”
+                            Link Insertions, often referred to as “Niche Edits,”
                             are among the most efficient and budget-friendly
                             methods to secure high-quality, authoritative
                             backlinks for your website. They deliver fast,
@@ -201,7 +204,7 @@ const CuratedLinks = () => {
                         <p className="text-primary-neutral/75 text-lg sm:text-xl px-0 md:px-16">
                             What are you waiting for? Begin your path to
                             improved keyword rankings and see why more than
-                            1,500 SEO professionals trust us for curated link
+                            1,500 SEO professionals trust us for link insertion
                             building.
                         </p>
                     </div>
@@ -209,23 +212,12 @@ const CuratedLinks = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="bg-white">
-                <div className="container mx-auto px-6 lg:px-10">
-                    {/* Title */}
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 md:gap-6 bg-primary-BG3 px-8 md:px-16 py-10 md:py-16 rounded-lg text-white">
-                        <h5 className="text-3xl font-semibold">
-                            Increase Your Website Traffic With Our Curated Links
-                            Service
-                        </h5>
-                        <a
-                            href="/register"
-                            className="bg-primary-light hover:bg-[#8adb0b] text-primary-BG3 text-base font-medium py-3 px-6 rounded-lg transition duration-300 inline-flex justify-center items-center gap-2"
-                        >
-                            Buy Curated Links <MoveRight />
-                        </a>
-                    </div>
-                </div>
-            </section>
+            <CTAStrip
+                ctaStripTitle="Increase Your Website Traffic With Our Link Insertions
+                            Service"
+                ctaButtonLabel="Buy Link Insertions"
+                ctaButtonLink="/register"
+            />
 
             {/* Trust Points Section */}
             <section className="py-16 md:py-28 bg-white space-y-16 md:space-y-40">
@@ -312,7 +304,7 @@ const CuratedLinks = () => {
                     {/* Title */}
                     <div className="text-center space-y-4">
                         <h2 className="text-4xl md:text-6xl font-bold text-primary-dark">
-                            Curated Link Building {""}
+                            Link Insertions {""}
                             <span className="text-primary">FAQs</span>
                         </h2>
                         <p className="text-primary-neutral text-lg sm:text-xl px-0 md:px-40">
@@ -333,10 +325,10 @@ const CuratedLinks = () => {
                                 className="border bg-white border-primary-dark/20 rounded-lg py-4 sm:py-6 px-4 sm:px-6 space-y-6"
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
-                                    What Are Curated Links?
+                                    What Are Link Insertions?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
-                                    Curated links are backlinks placed within
+                                    Link Insertions are backlinks placed within
                                     existing, high-quality, and relevant
                                     content. Each link acts as an endorsement
                                     for your website, since search engines take
@@ -353,7 +345,7 @@ const CuratedLinks = () => {
                                 className="border bg-white border-primary-dark/20 rounded-lg py-4 sm:py-6 px-4 sm:px-6 space-y-6"
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
-                                    How Do Curated Links Work?
+                                    How Do Link Insertions Work?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
                                     Often referred to as niche edits or
@@ -371,12 +363,12 @@ const CuratedLinks = () => {
                                 className="bg-white border border-primary-dark/20 rounded-lg py-4 sm:py-6 px-4 sm:px-6 space-y-6"
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
-                                    Are Curated Links “White Hat”?
+                                    Are Link Insertions “White Hat”?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
                                     Google’s guidelines caution against building
-                                    or paying for links. However, our curated
-                                    links are arranged so they appear
+                                    or paying for links. However, our link
+                                    insertions are arranged so they appear
                                     natural—real website owners are the ones
                                     placing them, which aligns with Google’s
                                     expectations.
@@ -388,13 +380,13 @@ const CuratedLinks = () => {
                                 className="bg-white border border-primary-dark/20 rounded-lg py-4 sm:py-6 px-4 sm:px-6 space-y-6"
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
-                                    How Do Curated Links Differ From Guest
+                                    How Do Link Insertions Differ From Guest
                                     Posts?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
                                     Guest posting involves writing and
                                     publishing new content on another website,
-                                    whereas curated links (or niche edits)
+                                    whereas link insertions (or niche edits)
                                     involve inserting a link into an already
                                     published article. Both techniques are used
                                     to boost search rankings and drive traffic,
@@ -424,7 +416,7 @@ const CuratedLinks = () => {
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
                                     How Do You Choose the Right Websites for
-                                    Curated Links?
+                                    Link Insertions?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
                                     We select websites based on a number of
@@ -443,7 +435,7 @@ const CuratedLinks = () => {
                                 className="bg-white border border-primary-dark/20 rounded-lg py-4 sm:py-6 px-4 sm:px-6 space-y-6"
                             >
                                 <AccordionTrigger className="p-0 text-2xl font-bold hover:no-underline text-primary-dark text-left gap-x-3 [&>svg]:w-8 [&>svg]:h-8 [&>svg]:rounded-full [&>svg]:bg-primary [&>svg]:text-white">
-                                    How Long Do Curated Links Last?
+                                    How Long Do Link Insertions Last?
                                 </AccordionTrigger>
                                 <AccordionContent className="p-0 text-primary-neutral text-lg">
                                     In a perfect scenario, they would be
@@ -464,9 +456,9 @@ const CuratedLinks = () => {
     );
 };
 
-const rootElement = document.getElementById("curated-links");
+const rootElement = document.getElementById("link-insertions");
 if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<CuratedLinks />);
+    ReactDOM.createRoot(rootElement).render(<LinkInsertions />);
 }
 
-export default CuratedLinks;
+export default LinkInsertions;
