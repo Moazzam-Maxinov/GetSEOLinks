@@ -20,6 +20,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -163,6 +164,12 @@ class RegisteredUserController extends Controller
                 'password' => $pendingRegistration->password,
                 'email_verified_at' => now(),
             ]);
+
+            // Send notification email to manager
+            Mail::raw("New user registration: {$user->name} ({$user->email})", function ($message) {
+                $message->to(['shaheen@maxinov.com', 'moazzam@maxinovip.com', 'smohd@maxinov.com'])
+                    ->subject('New User Registration');
+            });
 
             // Delete the pending registration
             $pendingRegistration->delete();

@@ -223,7 +223,7 @@ const AboutUs = () => {
             <CTAStrip
                 ctaStripTitle="We'd Love To Hear From You"
                 ctaButtonLabel="Contact Us"
-                ctaButtonLink="/contact-us"
+                ctaButtonLink="mailto:contact@getseolinks.com"
             />
 
             {/* Testimonial Section */}
