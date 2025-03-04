@@ -27,9 +27,9 @@ use App\Http\Controllers\StaticPagesController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/privacy-policy', [StaticPagesController::class, 'privacyPolicy']);
+Route::get('/privacy-policy', [StaticPagesController::class, 'privacyPolicy'])->name('privacyPolicy');
 
-Route::get('/terms-and-condition', [StaticPagesController::class, 'termsAndCondition']);
+Route::get('/terms-and-condition', [StaticPagesController::class, 'termsAndCondition'])->name('termsAndCondition');
 
 Route::get('/guest-posts', [StaticPagesController::class, 'guestPosts'])->name('guest-posts');
 
@@ -135,12 +135,13 @@ Route::get('/sitemap.xml', function () {
     // Unprotected URLs (public routes)
     $urls = [
         url('/'),
-        url('/privacy-policy'),
-        url('/terms-and-condition'),
+        route('privacyPolicy'),
+        route('termsAndCondition'),
         route('guest-posts'),
-        route('curated-links'),
-        url('/login'),
-        url('/register'),
+        route('link-insertions'),
+        route('about-us'),
+        route('login'),
+        route('register'),
     ];
 
     // XML structure banane ke liye SimpleXMLElement ka istemal
@@ -159,6 +160,15 @@ Route::get('/sitemap.xml', function () {
 
     // XML response return karte waqt content-type header ko application/xml set karein
     return response($xml->asXML(), 200)->header('Content-Type', 'application/xml');
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    
+    return "Cache is cleared";
 });
 
 // Logout Route
